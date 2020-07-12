@@ -1,5 +1,12 @@
 import React from "react";
 import Card from "./card";
+import styled from "styled-components";
+
+const StyledCard = styled(Card)`
+  .uk-card-media-top img {
+    height: 400px !important;
+  }
+`;
 
 const Articles = ({ articles }) => {
   const leftArticlesCount = Math.ceil(articles.length / 5);
@@ -11,7 +18,9 @@ const Articles = ({ articles }) => {
       <div className="uk-child-width-1-2" data-uk-grid>
         <div>
           {leftArticles.map((article, i) => {
-            return <Card article={article} key={`article__${article.slug}`} />;
+            return (
+              <StyledCard article={article} key={`article__${article.slug}`} />
+            );
           })}
         </div>
         <div>
