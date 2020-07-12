@@ -7,7 +7,7 @@ const ARTICLES_QUERY = gql`
       content
       slug
       image {
-        url
+        formats
       }
       category {
         name

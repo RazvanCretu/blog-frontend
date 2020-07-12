@@ -74,6 +74,7 @@ export const GlobalStyle = createGlobalStyle`
   html,
   div#__next {
       min-width: 100% !important;
+      overflow:auto;
   }
    
   nav{
