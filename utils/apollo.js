@@ -4,7 +4,7 @@ import withApollo from "next-with-apollo";
 import { createHttpLink } from "apollo-link-http";
 import { fetch } from "isomorphic-unfetch";
 
-const GRAPHQL_URL = "https://razvans-awesome-blog.herokuapp.com/graphql";
+const GRAPHQL_URL = `${process.env.API_URL}/graphql`;
 
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.
