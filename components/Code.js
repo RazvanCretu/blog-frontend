@@ -4,7 +4,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   a11yDark,
   a11yLight,
-} from "../node_modulesyarn/react-syntax-highlighter/dist/esm/styles/hljs";
+} from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs";
 import styled, { withTheme } from "styled-components";
 import { lightTheme } from "../assets/js/theme";
 
