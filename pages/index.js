@@ -37,11 +37,11 @@ const Home = () => {
 
               const morePosts = () => {
                 fetchMore({
-                  variables: { skip: data.articles.length },
+                  variables: { skip: data.posts.length },
                   updateQuery: (prev, { fetchMoreResult }) => {
                     if (!fetchMoreResult) return prev;
                     return Object.assign({}, prev, {
-                      articles: [...prev.articles, ...fetchMoreResult.articles],
+                      posts: [...prev.posts, ...fetchMoreResult.posts],
                     });
                   },
                 });
@@ -49,7 +49,7 @@ const Home = () => {
 
               return (
                 <>
-                  <Articles articles={data.articles} />
+                  <Articles articles={data.posts} />
                   <MorePosts toggle={morePosts} text="Load more..." />
                 </>
               );
