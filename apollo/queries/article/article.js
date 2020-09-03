@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 
 const ARTICLE_QUERY = gql`
-  query Articles($slug: String!, $where_ne: JSON) {
-    articles(where: { slug: $slug }) {
+  query Posts($slug: String!) {
+    posts(where: { slug: $slug }) {
       title
       content
       slug
-      image {
+      cover {
         url
       }
       category {
@@ -15,10 +15,10 @@ const ARTICLE_QUERY = gql`
       }
       published_at
     }
-    moreArticles: articles(
+    morePosts: posts(
       sort: "published_at:desc"
       limit: 2
-      where: $where_ne
+      where: { slug_ne: $slug }
     ) {
       title
       slug
@@ -27,7 +27,7 @@ const ARTICLE_QUERY = gql`
         name
         slug
       }
-      image {
+      cover {
         url
       }
     }

@@ -4,12 +4,12 @@ const CATEGORY_ARTICLES_QUERY = gql`
   query Category($slug: String!) {
     categories(where: { slug: $slug }) {
       name
-      articles {
+      posts {
         id
         title
         content
         slug
-        image {
+        cover {
           url
         }
         category {
