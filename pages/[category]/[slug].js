@@ -27,8 +27,8 @@ const Article = () => {
         if (loading) return null;
         if (error) return `Error! ${error}`;
 
-        const article = data.articles[0];
-        const moreArticles = data.moreArticles;
+        const article = data.posts[0];
+        const moreArticles = data.morePosts;
 
         const imageUrl =
           process.env.NODE_ENV !== "development"
