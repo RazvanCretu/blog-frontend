@@ -22,7 +22,7 @@ const Category = () => {
             <div className="uk-section">
               <div className="uk-container uk-container-large">
                 <h1>{category.name}</h1>
-                <Articles articles={category.articles} />
+                <Articles articles={category.posts} />
               </div>
             </div>
           </div>
