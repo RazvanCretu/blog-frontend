@@ -11,8 +11,8 @@ const Image = styled.img`
 const Card = ({ article }) => {
   const imageUrl =
     process.env.NODE_ENV !== "development"
-      ? article.image.url
-      : process.env.API_URL + article.image.url;
+      ? article.cover.url
+      : process.env.API_URL + article.cover.url;
   return (
     <Link
       href="/[category]/[slug]"
