@@ -1,16 +1,18 @@
 import { useRouter } from "next/router";
-import Articles from "../components/Articles";
+import Articles from "../../components/Articles";
 // import Query from "../components/query";
 import { Query } from "react-apollo";
-import CATEGORY_ARTICLES_QUERY from "../apollo/queries/category/articles";
+import CATEGORY_ARTICLES_QUERY from "../../apollo/queries/category/articles";
 
 const Category = () => {
   const router = useRouter();
 
+  console.log(router.query);
+
   return (
     <Query
       query={CATEGORY_ARTICLES_QUERY}
-      variables={{ slug: router.query.slug }}
+      variables={{ slug: router.query.category }}
     >
       {({ loading, error, data }) => {
         if (loading) return null;

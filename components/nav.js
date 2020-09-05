@@ -42,13 +42,13 @@ const Nav = ({ toggleTheme, theme }) => {
                 <ul className="uk-navbar-nav">
                   {data.categories.map((category, i) => {
                     // handler for ssr routes
-                    const handleClick = (e) => {
-                      e.preventDefault();
-                      router.push(
-                        `/category?slug=${category.slug}`,
-                        `/${category.slug}`
-                      );
-                    };
+                    // const handleClick = (e) => {
+                    //   e.preventDefault();
+                    //   router.push(
+                    //     `/category?slug=${category.slug}`,
+                    //     `/${category.slug}`
+                    //   );
+                    // };
 
                     return (
                       <li
@@ -58,15 +58,14 @@ const Nav = ({ toggleTheme, theme }) => {
                         }
                       >
                         <Link
-                          href={{
-                            pathname: "category",
-                            query: { slug: category.slug },
-                          }}
+                          href="/[category]"
+                          // href={{
+                          //   pathname: "/category",
+                          //   query: { slug: category.slug },
+                          // }}
                           as={`/${category.slug}`}
                         >
-                          <a onClick={handleClick} className="uk-link-reset">
-                            {category.name}
-                          </a>
+                          <a className="uk-link-reset">{category.slug}</a>
                         </Link>
                       </li>
                     );
