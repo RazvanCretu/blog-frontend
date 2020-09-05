@@ -12,7 +12,7 @@ const Card = ({ article }) => {
   const imageUrl =
     process.env.NODE_ENV !== "development"
       ? article.cover.url
-      : process.env.API_URL + article.cover.url;
+      : article.cover.url;
   return (
     <Link
       href="/[category]/[slug]"

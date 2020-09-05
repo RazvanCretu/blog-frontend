@@ -33,7 +33,7 @@ const Article = () => {
         const imageUrl =
           process.env.NODE_ENV !== "development"
             ? article.cover.url
-            : process.env.API_URL + article.cover.url;
+            : article.cover.url;
 
         const emojified = (text) =>
           text.value.replace(/:\w+:/gi, (name) => emoji.getUnicode(name));
