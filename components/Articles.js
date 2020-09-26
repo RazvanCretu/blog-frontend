@@ -1,11 +1,12 @@
 import React from "react";
-import Card from "./card";
+import Cardy from "./Card";
 import styled from "styled-components";
 
-const StyledCard = styled(Card)`
-  .uk-card-media-top img {
-    height: 400px !important;
-  }
+const Container = styled.div`
+  display: flex;
+  height: 400px;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const Articles = ({ articles }) => {
@@ -14,26 +15,19 @@ const Articles = ({ articles }) => {
   const rightArticles = articles.slice(leftArticlesCount, articles.length);
 
   return (
-    <div>
-      <div className="uk-child-width-1-2" data-uk-grid>
-        <div>
-          {leftArticles.map((article, i) => {
+    <Container>
+      {/* <div>
+          {articles.map((article, i) => {
             return (
               <StyledCard article={article} key={`article__${article.slug}`} />
             );
           })}
-        </div>
-        <div>
-          <div className="uk-child-width-1-2@m uk-grid-match" data-uk-grid>
-            {rightArticles.map((article, i) => {
-              return (
-                <Card article={article} key={`article__${article.slug}`} />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
+        </div> */}
+
+      {articles.map((article, i) => {
+        return <Cardy article={article} key={`article__${article.slug}`} />;
+      })}
+    </Container>
   );
 };
 

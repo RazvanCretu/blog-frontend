@@ -7,8 +7,6 @@ import CATEGORY_ARTICLES_QUERY from "../../apollo/queries/category/articles";
 const Category = () => {
   const router = useRouter();
 
-  console.log(router.query);
-
   return (
     <Query
       query={CATEGORY_ARTICLES_QUERY}

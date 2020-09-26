@@ -55,7 +55,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     position: fixed;
     width: 100%;
-    overflow: auto;
 }
 
 
@@ -69,28 +68,41 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transition: all 0.25s linear;
+    overflow:auto;
   }
 
   html,
   div#__next {
       min-width: 100% !important;
-      overflow:auto;
   }
+
+  html {
+    overflow:hidden;
+  }
+
+  div#__next {
+    position:absolute;
+}
    
-  nav{
-      justify-content:center;
-      align-items:center;
-      min-height: 6vh;
+  nav {
+    justify-content:center;
+    align-items:center;
+    min-height: 6vh;
     display: flex;
     flex-wrap: wrap;
     top: 0;
     position: sticky;
 }
 
+  a:hover {
+  text-decoration: none;
+}
 
-  .uk-navbar-container {
+  .MuiAppBar-root {
     background: ${({ theme }) => theme.navBar.bgPrimary} !important;
-    color: ${({ theme }) => theme.text};
+    a {
+      color: ${({ theme }) => theme.text};
+    }
     transition: all 0.25s linear;
   }
 `;

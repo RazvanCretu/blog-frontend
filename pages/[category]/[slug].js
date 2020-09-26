@@ -8,6 +8,11 @@ import CodeBlock from "../../components/Code";
 import emoji from "emoji-dictionary";
 import styled from "styled-components";
 
+const ArticleContainer = styled.div`
+  position: absolute;
+  width: 100%;
+`;
+
 function Image(props) {
   return <img {...props} style={{ maxWidth: "100%" }} />;
 }
@@ -39,7 +44,7 @@ const Article = () => {
           text.value.replace(/:\w+:/gi, (name) => emoji.getUnicode(name));
 
         return (
-          <div>
+          <ArticleContainer>
             <div
               id="banner"
               className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding"
@@ -75,7 +80,7 @@ const Article = () => {
             <div>
               <h1>More Posts</h1>
             </div>
-          </div>
+          </ArticleContainer>
         );
       }}
     </Query>
