@@ -1,5 +1,5 @@
 import React from "react";
-import Cardy from "./Card";
+import Cardy from "./card";
 import styled from "styled-components";
 
 const Container = styled.div`
