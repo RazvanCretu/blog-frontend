@@ -10,16 +10,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const Image = styled.img`
-  height: 200px;
-  object-fit: cover;
-  width: 100%;
-`;
-
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    maxHeight: 320,
+    margin: `20px 0px`,
   },
   media: {
     height: 140,

@@ -12,6 +12,8 @@ import Switch from "@material-ui/core/Switch";
 import Box from "@material-ui/core/Box";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+// import fetch from 'isomorphic-unfetch';
+import axios from 'axios';
 
 const NavContainer = styled.div`
   background: ${(props) => props.theme.navBar.bgPrimary};
@@ -37,20 +39,19 @@ const StyledButton = styled(Button)`
 const StyledSwitch = styled(Switch)`
 
   margin: 0px auto;
-
-
-
-  }
 `;
+
 
 function HideOnScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+  const trigger = useScrollTrigger({
+    target: window ? document.body : undefined,
+  });
 
-  console.log(window);
+  document.body;
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -70,6 +71,17 @@ HideOnScroll.propTypes = {
 
 const Nav = ({ toggleTheme, theme, props }) => {
   const router = useRouter();
+
+  const auth = () => {
+    axios.get ('http://localhost:1337/connect/google')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+
+  };
 
   return (
     <NavContainer>
@@ -117,11 +129,24 @@ const Nav = ({ toggleTheme, theme, props }) => {
                 <a className="uk-link-reset">Categories</a>
               </Link>
             </StyledButton>
+            <StyledButton color="inherit">
+              <Link href="" >
+                <a className="uk-link-reset" onClick={auth} >Log In</a>
+              </Link>
+            </StyledButton>
           </Toolbar>
         </StyledBar>
       </HideOnScroll>
     </NavContainer>
   );
 };
+
+// Nav.getStaticProps = 
+
+// async function() {
+//   const res = await axios.get('http://localhost:1337/connect/google')
+//   const data = await res.data
+
+// }
 
 export default Nav;

@@ -33,6 +33,9 @@ const Article = () => {
         if (error) return `Error! ${error}`;
 
         const article = data.posts[0];
+
+        console.log(article);
+        
         const moreArticles = data.morePosts;
 
         const imageUrl =

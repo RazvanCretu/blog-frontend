@@ -8,8 +8,9 @@ import withApollo from "../utils/apollo";
 import Nav from "../components/nav";
 import { useDarkMode } from "../utils/useDarkMode";
 import { StylesProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-const App = ({ Component, pageProps, apollo }) => {
+const App = ({ Component, pageProps, apollo}) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
 
   const themeMode = theme === "light" ? lightTheme : darkTheme;
@@ -50,6 +51,7 @@ const App = ({ Component, pageProps, apollo }) => {
       <StylesProvider injectFirst>
         <ThemeProvider theme={themeMode}>
           <GlobalStyle />
+          <CssBaseline />
           <Nav toggleTheme={toggleTheme} theme={theme} />
           <Component {...pageProps} theme={theme} />
         </ThemeProvider>
@@ -58,5 +60,22 @@ const App = ({ Component, pageProps, apollo }) => {
   );
 };
 
+export async function getStaticProps(context) {
+
+  const logIn = await axios.get('http://localhost:1337/connect/google', {
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    });
+  const data = logIn.json();
+
+  return {
+    props: {data}, // will be passed to the page component as props
+  }
+}
+
 // Wraps all components in the tree with the data provider
 export default withApollo(App);
+
+

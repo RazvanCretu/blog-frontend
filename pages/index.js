@@ -15,6 +15,10 @@ import Container from "@material-ui/core/Container";
 //   padding: 100px 50px 75px 50px;
 // `;
 
+const StyledContainer = styled(Container)`
+  padding-top: 100px;
+`;
+
 const Index = styled.div`
   width: 100%;
 `;
@@ -26,7 +30,7 @@ const ArticlesContainer = styled.div`
 const Home = () => {
   return (
     <Index>
-      <Container>
+      <StyledContainer>
         <h1>Strapi blog</h1>
         <Query query={ARTICLES_QUERY} variables={{ skip: 0 }}>
           {({ loading, data, error, fetchMore }) => {
@@ -64,7 +68,7 @@ const Home = () => {
             );
           }}
         </Query>
-      </Container>
+      </StyledContainer>
     </Index>
   );
 };
