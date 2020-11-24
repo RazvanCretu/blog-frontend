@@ -13,6 +13,7 @@ import Box from "@material-ui/core/Box";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 // import fetch from 'isomorphic-unfetch';
+import {useAuth} from '../contexts/auth.js';
 import axios from 'axios';
 
 const NavContainer = styled.div`
@@ -71,17 +72,23 @@ HideOnScroll.propTypes = {
 
 const Nav = ({ toggleTheme, theme, props }) => {
   const router = useRouter();
+  const { login, logout } = useAuth();
 
-  const auth = () => {
-    axios.get ('http://localhost:1337/connect/google')
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.log(error);
-  })
+  // console.log(window.location)
+  // console.log(router)
 
-  };
+  const handleLogIn = () => {
+    window.location = "http://localhost:1337/connect/google";
+
+    const search = window.location.search
+
+    
+    console.log(search)
+    
+    const URL = `http://localhost:1337${router.asPath}`
+    axios.get(URL).then(data => {console.log(data)}).catch( err =>{ console.log(err)})
+
+  }
 
   return (
     <NavContainer>
@@ -131,7 +138,12 @@ const Nav = ({ toggleTheme, theme, props }) => {
             </StyledButton>
             <StyledButton color="inherit">
               <Link href="" >
-                <a className="uk-link-reset" onClick={auth} >Log In</a>
+                <a className="uk-link-reset" onClick={() => {window.location = 'http://localhost:1337/connect/google'}}>Log In</a>
+              </Link>
+            </StyledButton>
+            <StyledButton color="inherit">
+              <Link href="" >
+                <a className="uk-link-reset" onClick={logout}>Log Out</a>
               </Link>
             </StyledButton>
           </Toolbar>

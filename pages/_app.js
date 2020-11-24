@@ -9,6 +9,7 @@ import Nav from "../components/nav";
 import { useDarkMode } from "../utils/useDarkMode";
 import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { AuthProvider, ProtectRoute } from '../contexts/auth'
 
 const App = ({ Component, pageProps, apollo}) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
@@ -48,34 +49,21 @@ const App = ({ Component, pageProps, apollo}) => {
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
       </Head>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={themeMode}>
-          <GlobalStyle />
-          <CssBaseline />
-          <Nav toggleTheme={toggleTheme} theme={theme} />
-          <Component {...pageProps} theme={theme} />
-        </ThemeProvider>
-      </StylesProvider>
+      <AuthProvider>
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={themeMode}>
+              <GlobalStyle />
+              <CssBaseline />
+              <ProtectRoute>
+                <Nav toggleTheme={toggleTheme} theme={theme} />
+                <Component {...pageProps} theme={theme} />
+              </ProtectRoute>   
+            </ThemeProvider>
+          </StylesProvider>
+      </AuthProvider>
     </ApolloProvider>
   );
 };
 
-export async function getStaticProps(context) {
-
-  const logIn = await axios.get('http://localhost:1337/connect/google', {
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      }
-    });
-  const data = logIn.json();
-
-  return {
-    props: {data}, // will be passed to the page component as props
-  }
-}
-
 // Wraps all components in the tree with the data provider
 export default withApollo(App);
-
-
